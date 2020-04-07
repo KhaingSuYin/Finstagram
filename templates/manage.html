@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+<body>
+
+    MANAGE FOLLOWERS
+    <form action="/followRequest" method="POST">
+        {% for line in requestData %}
+        <input type="radio" name="follower" value={{line.follower}}>{{line.follower}}
+        <br>
+        {% endfor %}
+        <input type="submit" name='followButton' value="accept" />
+        <input type="submit" name='followButton' value="decline" />
+    </form>
+
+
+    <a href="/home"> HOME </a>
+    <br>
+    <a href="/logout">Logout</a>
+
+</body>
+
+
+</html>
