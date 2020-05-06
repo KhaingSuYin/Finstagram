@@ -2,50 +2,15 @@
 <head>
 </head>
 <body>
-    <form action="/post" method="POST">
-        <h1>Welcome {{username}}</h1>
-        <input type="text" name="blog" placeholder="post" required /><br>
-        <input type="submit" value=Post />
-    </form>
+    <h1>Welcome {{username}}</h1>
+    <h2>Choose your action: </h2>
 
-    <style type="text/css">
-        table, th, td {
-            border: 1px solid black;
-        }
-    </style>
-
-    Here are posts visible to {{username}}:
-
-
-    <table>
-        <tr>
-            <th>Time</th>
-            <th>Poster</th>
-            <th>PhotoID</th>
-            <th>Caption</th>
-            <th>File Path</th>
-            <th>allFollowers</th>
-
-            {% for line in posts %}
-        <tr>
-            <td>{{line.postingDate}}</td>
-            <td>{{line.poster}}</td>
-            <td>{{line.pID}}</td>
-            <td>{{line.caption}}</td>
-            <td>{{line.filePath}}</td>
-            <td>{{line.allFollowers}}</td>
-            <td>
-                {% for line2 in tagPosts %}
-                {% if line2.pID == line.pID %}
-                {{line2.fname}} {{line2.lname}}
-                <br>
-                {% endif %}
-                {% endfor %}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-
+    <a href="/view_posts">View and Manage posts</a>
+    <br>
+    <a href="/post">Post a photo</a>
+    <br>
+    <a href="/friendgroup">Create Friend Group</a>
+    <br>
     <a href="/select_blogger">Select a blogger</a>
     <br>
     <a href="/manage">Manage Followers</a>
@@ -55,6 +20,4 @@
 
 
 </body>
-
-
 </html>

@@ -1,0 +1,82 @@
+<html>
+<head>
+</head>
+<body>
+
+    <form action="/show_posts" method="GET">
+
+        <h2>To view posts from specific user: </h2>
+        {% for line in user_list %}
+        <input type="radio" name="user" value={{line.username}}/>{{line.firstName}} {{line.lastName}}
+        <br>
+        {% endfor %}
+        <input type="submit" value="View Posts">
+
+    </form>
+
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <h2>Here are posts visible to {{username}}:</h2>
+
+
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Poster</th>
+            <th>PhotoID</th>
+            <th>Caption</th>
+            <th>File Path</th>
+            <th>Tagged List</th>
+            <th>Reactions</th>
+            <th>Reaction to the post</th>
+
+            {% for line in posts %}
+        <tr>
+            <td>{{line.postingDate}}</td>
+            <td>{{line.poster}}</td>
+            <td>{{line.pID}}</td>
+            <td>{{line.caption}}</td>
+            <td><img src="{{url_for('static', filename = line.filePath)}}" style="width:40px;height:30px"/></td>
+            <td>
+                {% for line2 in tag_react%}
+                {% if line2.pID == line.pID %}
+                {{line2.tagged}}
+                <br>
+                {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for line3 in tag_react%}
+                {% if line3.pID == line.pID %}
+                {{line3.reacted}} : Emoji: {{line3.emoji}} <br />
+                Comment: {{line3.comment}}
+                <br>
+                {% endif %}
+                {% endfor %}
+            </td>
+            <td><form action="/addReact" method="POST">
+
+    <h4>Add Reaction: </h4>
+    Emoji: <input type="text" name="emoji" required />
+    <br>
+    Comment: <input type="text" name="comment" required />
+    <br>
+    <input type="hidden" name="pID" value="{{line.pID}}" />
+    <input type="submit" value="React">
+
+</form> </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/home">Back to Home Page</a>
+    <br>
+    <a href="/logout">Logout</a>
+    <br>
+</body>
+
+</html>

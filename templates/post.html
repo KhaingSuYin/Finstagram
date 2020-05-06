@@ -1,0 +1,32 @@
+<html>
+<head>
+</head>
+<body>
+
+    
+    <form action="/post_a_photo" name="post" method="POST" enctype="multipart/form-data">
+        <h2>To post a photo: </h2>
+        FilePath: <input type="file" name="file" accept ="images/*" value="filepath" required/><br>
+        Write something: <input type="text" name="caption" /><br>
+        <h4>Choose from the following who you want to share the post with: </h4>
+        <input type="radio" name="allFollowers" value="0" /> allFollowers<br />
+        {% for line in visible_list %}
+        <input type="radio" name="groups" value={{line.groupName}}+","+{{line.groupCreator}}>{{line.groupName}}
+        <br>
+        {% endfor %}
+        <h4>Choose who you want to tag for this post: </h4>
+        {% for line in taglist %}
+        <input type="radio" name="tags" value={{line.username}}>{{line.firstName}} {{line.lastName}}
+        <br>
+        {% endfor %}
+        <input type="submit" value=Post />
+    </form>
+
+
+
+    <a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

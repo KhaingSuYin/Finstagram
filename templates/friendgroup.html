@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+<body>
+
+    <h2>Create a Friend Group: </h2>
+    
+    <form action="/createFG" method="GET">
+        Type in Group Name: <input type="text" name="groupName" required />
+        <br>
+        Description of Friend Group: <input type="text" name="description" />
+        {% if error %}
+        <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+        <br>
+        <input type="submit" value=Submit />
+    </form>
+
+
+    <a href="/home"> Back to Home Page </a>
+    <br>
+    <a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

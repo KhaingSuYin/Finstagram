@@ -4,6 +4,14 @@
 <head>
 </head>
 <body>
+    SEARCH FOR USER TO FOLLOW
+    <form action="/searchFollow" method="POST">
+        <input type="text" name="user" />
+        <input type="submit" name="Send Request" />
+        {% if error %}
+        <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+    </form>
 
     MANAGE FOLLOWERS
     <form action="/followRequest" method="POST">
@@ -16,7 +24,7 @@
     </form>
 
 
-    <a href="/home"> HOME </a>
+    <a href="/home"> Back to Home Page </a>
     <br>
     <a href="/logout">Logout</a>
 
